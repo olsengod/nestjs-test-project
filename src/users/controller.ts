@@ -9,6 +9,7 @@ import {
 } from '@nestjs/common';
 
 import { UserService } from './service';
+import { CreateUserDto, UpdateUserDto } from './types';
 
 @Controller('users')
 export class UserController {
@@ -16,8 +17,7 @@ export class UserController {
 
   @Post()
   async createUser(
-    @Body('name') name: string,
-    @Body('age') age: number,
+    @Body() { name, age }: CreateUserDto,
   ) {
     const userId: string = await this.userService.createUser(name, age);
     return { newUserId: userId };
@@ -36,8 +36,7 @@ export class UserController {
   @Patch(':id')
   async updateUser(
     @Param('id') userId: string,
-    @Body('name') name: string,
-    @Body('age') age: number,
+    @Body() { name, age }: UpdateUserDto,
   ) {
     return this.userService.updateUser(userId, name, age);
   }

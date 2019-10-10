@@ -1,9 +1,11 @@
 import { UserModel } from './model';
+import mongodbCfg from '../../config/database';
+import userCfg from '../../config/user';
 
 export const UserProviders = [
   {
-    provide: 'USER_MODEL',
+    provide: userCfg.model_provider,
     useFactory: UserModel,
-    inject: ['DATABASE_CONNECTION'],
+    inject: [ mongodbCfg.db_provider ],
   },
 ];

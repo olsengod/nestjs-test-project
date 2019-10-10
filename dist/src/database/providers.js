@@ -22,7 +22,7 @@ async function setDBConnection() {
 }
 exports.databaseProviders = [
     {
-        provide: 'DATABASE_CONNECTION',
+        provide: database_1.default.db_provider,
         useFactory: setDBConnection,
     },
 ];

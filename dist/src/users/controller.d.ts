@@ -1,8 +1,9 @@
 import { UserService } from './service';
+import { CreateUserDto, UpdateUserDto } from './types';
 export declare class UserController {
     private readonly userService;
     constructor(userService: UserService);
-    createUser(name: string, age: number): Promise<{
+    createUser({ name, age }: CreateUserDto): Promise<{
         newUserId: string;
     }>;
     getAllUsers(): Promise<{
@@ -15,7 +16,7 @@ export declare class UserController {
         name: string;
         age: number;
     }>;
-    updateUser(userId: string, name: string, age: number): Promise<{
+    updateUser(userId: string, { name, age }: UpdateUserDto): Promise<{
         id: string;
         name: string;
         age: number;

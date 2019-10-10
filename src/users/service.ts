@@ -1,12 +1,13 @@
 import { Injectable, Inject, NotFoundException } from '@nestjs/common';
 import { Model } from 'mongoose';
 
-import { User } from './model';
+import { User } from './types';
+import userCfg from '../../config/user';
 
 @Injectable()
 export class UserService {
   constructor(
-    @Inject('USER_MODEL')
+    @Inject(userCfg.model_provider)
     private readonly userModel: Model<User>,
   ) {}
 

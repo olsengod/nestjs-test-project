@@ -1,5 +1,5 @@
 import { Model } from 'mongoose';
-import { User } from './model';
+import { User } from './types';
 export declare class UserService {
     private readonly userModel;
     constructor(userModel: Model<User>);

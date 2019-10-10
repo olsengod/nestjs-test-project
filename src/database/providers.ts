@@ -21,7 +21,7 @@ async function setDBConnection(): Promise<typeof mongoose | void> {
 
 export const databaseProviders = [
   {
-    provide: 'DATABASE_CONNECTION',
+    provide: mongodbCfg.db_provider,
     useFactory: setDBConnection,
   },
 ];

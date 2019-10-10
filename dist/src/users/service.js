@@ -14,6 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("mongoose");
+const user_1 = require("../../config/user");
 let UserService = class UserService {
     constructor(userModel) {
         this.userModel = userModel;
@@ -78,7 +79,7 @@ let UserService = class UserService {
 };
 UserService = __decorate([
     common_1.Injectable(),
-    __param(0, common_1.Inject('USER_MODEL')),
+    __param(0, common_1.Inject(user_1.default.model_provider)),
     __metadata("design:paramtypes", [mongoose_1.Model])
 ], UserService);
 exports.UserService = UserService;

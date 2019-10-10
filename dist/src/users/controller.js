@@ -14,11 +14,12 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
 const service_1 = require("./service");
+const types_1 = require("./types");
 let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
     }
-    async createUser(name, age) {
+    async createUser({ name, age }) {
         const userId = await this.userService.createUser(name, age);
         return { newUserId: userId };
     }
@@ -28,7 +29,7 @@ let UserController = class UserController {
     async getUser(userId) {
         return this.userService.getUser(userId);
     }
-    async updateUser(userId, name, age) {
+    async updateUser(userId, { name, age }) {
         return this.userService.updateUser(userId, name, age);
     }
     async deleteUser(userId) {
@@ -38,10 +39,9 @@ let UserController = class UserController {
 };
 __decorate([
     common_1.Post(),
-    __param(0, common_1.Body('name')),
-    __param(1, common_1.Body('age')),
+    __param(0, common_1.Body()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, Number]),
+    __metadata("design:paramtypes", [types_1.CreateUserDto]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "createUser", null);
 __decorate([
@@ -60,10 +60,9 @@ __decorate([
 __decorate([
     common_1.Patch(':id'),
     __param(0, common_1.Param('id')),
-    __param(1, common_1.Body('name')),
-    __param(2, common_1.Body('age')),
+    __param(1, common_1.Body()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, Number]),
+    __metadata("design:paramtypes", [String, types_1.UpdateUserDto]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "updateUser", null);
 __decorate([
