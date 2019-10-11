@@ -1,1 +1,0 @@
-{"version":3,"file":"characters.js","sourceRoot":"","sources":["../../config/characters.ts"],"names":[],"mappings":";;AAAA,MAAM,aAAa,GAAG;IACpB,UAAU,EAAE;QACV,cAAc,EAAE,OAAO,CAAC,GAAG,CAAC,mBAAmB,IAAI,kBAAkB;KACtE;IACD,WAAW,EAAE;QACX,cAAc,EAAE,OAAO,CAAC,GAAG,CAAC,mBAAmB,IAAI,kBAAkB;KACtE;CACF,CAAC;AAEF,kBAAe,aAAa,CAAC,OAAO,CAAC,GAAG,CAAC,QAAQ,CAAC,CAAC"}
