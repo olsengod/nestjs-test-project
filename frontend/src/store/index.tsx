@@ -1,9 +1,10 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import createSagaMiddleware from 'redux-saga';
+import { all } from 'redux-saga/effects';
 
 import characterReducer from './character/reducers';
 import notificationReducer from './notification/reducers';
-import sagas from './sagas';
+import characterSaga from './character/saga';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -17,6 +18,12 @@ export const store = createStore(
   applyMiddleware(sagaMiddleware)
 );
 
-sagaMiddleware.run(sagas);
+function* rootSaga() {
+  yield all([
+    ...characterSaga,
+  ])
+}
+
+sagaMiddleware.run(rootSaga);
 
 export type AppState = ReturnType<typeof rootReducer>;

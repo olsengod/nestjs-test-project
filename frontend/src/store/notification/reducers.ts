@@ -8,7 +8,7 @@ import {
 const initState: NotifState = {
   exists: false,
   title: '',
-  description: '',
+  description: [],
   level: 'warning'
 }
 

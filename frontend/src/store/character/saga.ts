@@ -45,7 +45,8 @@ function* exponentialBackoff(input: string, debounce: boolean) {
       if (response) {
         if (response.status === 200) {
           retry = false;
-          let characters: Data['results'] = response.data.data.results;
+          console.log('response', response);
+          let characters: Data['results'] = response.data.results;
           let charList: CharState['list'] = yield characters.map((char: Result) => {
             return {
               id: char.id,
@@ -54,19 +55,19 @@ function* exponentialBackoff(input: string, debounce: boolean) {
             };
           });
 
-          let total: CharState['total'] = response.data.data.total;
+          let total: CharState['total'] = response.data.total;
           yield put(setCharList({
             list: charList,
             total,
           }));
           yield put(setCharLoader(false));
 
-        } else if (response.status === (401 || 409)) {
+        } else if (response.status === (400 || 401 || 409)) {
           retry = false;
           yield put(setNotification({
             exists: true,
             title: 'Client error',
-            description: response.data.message,
+            description: response.data.data,
             level: 'warning'
           }))
           yield put(clearNotification());
@@ -74,7 +75,15 @@ function* exponentialBackoff(input: string, debounce: boolean) {
 
         } else {
           console.log('[SAGA] STATUS 500');
-          retry = true;
+          retry = false;
+          yield put(setNotification({
+            exists: true,
+            title: 'Server error',
+            description: response.data,
+            level: 'error'
+          }))
+          yield put(clearNotification());
+          yield put(setCharLoader(false));
         }
 
       } else {

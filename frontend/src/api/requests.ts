@@ -4,22 +4,21 @@ import httpCfg from '../config/http';
 import { ResponseType, ResponseResultType, RequestArgs } from './types';
 
 export async function getCharacters ({ nameStartsWith, offset, limit }: RequestArgs): Promise<ResponseResultType> {
-  return axios.request<any>({
+  return axios.request<ResponseType>({
     method: 'get',
-    url: httpCfg.backendURL + `&nameStartsWith=${nameStartsWith}&offset=${offset}&limit=${limit}`,
+    url: httpCfg.backendURL + `/characters?nameStartsWith=${nameStartsWith}&offset=${offset}&limit=${limit}`,
     validateStatus: function (status) {
-      return status === 200 || status === 401 || status === 409
+      return status === 200 || status === 400 || status === 401 || status === 409
     }
   }).then(getCharactersResponse => {
-    console.log('RES', getCharactersResponse);
     return {
       status: getCharactersResponse.status,
       data: getCharactersResponse.data
     };
-  }).catch(err => {
+  }).catch(() => {
     return {
       status: 500,
-      data: { message: 'Internal server error' }
+      data: ['Internal server error'],
     };
   });
 }

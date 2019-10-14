@@ -6,7 +6,7 @@ import './style.css';
 import { setCharName } from '../../store/character/actions';
 import { AppState } from '../../store';
 
-import CharacterList from './CharacterList';
+import CharacterList from './List';
 
 interface CharacterSearchProps {
   setCharName: typeof setCharName

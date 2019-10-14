@@ -14,21 +14,20 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
 const service_1 = require("./service");
+const types_1 = require("./types");
 let CharactersController = class CharactersController {
     constructor(charactersService) {
         this.charactersService = charactersService;
     }
-    async getCharacters(nameStartsWith, offset, limit) {
+    async getCharacters({ nameStartsWith, offset, limit }) {
         return await this.charactersService.getCharacters(nameStartsWith, offset, limit);
     }
 };
 __decorate([
     common_1.Get(),
-    __param(0, common_1.Query('nameStartsWith')),
-    __param(1, common_1.Query('offset', new common_1.ParseIntPipe())),
-    __param(2, common_1.Query('limit', new common_1.ParseIntPipe())),
+    __param(0, common_1.Query()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Object, Object]),
+    __metadata("design:paramtypes", [types_1.GetCharactersDto]),
     __metadata("design:returntype", Promise)
 ], CharactersController.prototype, "getCharacters", null);
 CharactersController = __decorate([

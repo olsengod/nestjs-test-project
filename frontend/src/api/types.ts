@@ -79,7 +79,7 @@ interface GetCharactersArgs {
 //Response objects
 interface ResponseResult {
   status: number
-  data: ResponseType
+  data: ResponseType | unknown[]
 }
 
 export type ResponseType = Partial<GetCharactersResponse>;

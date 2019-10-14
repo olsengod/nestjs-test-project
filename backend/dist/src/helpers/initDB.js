@@ -20,7 +20,7 @@ async function initDB(dbModel) {
         await Promise.all(dbInsertions);
         dbModel.count((err, count) => {
             if (!err) {
-                console.log(`[MONGODB] Database was successfuly initialised and contain ${count} documents`);
+                console.log(`[MONGODB] Database was successfully initialised and contain ${count} documents`);
             }
             else {
                 console.log(`[MONGODB] ${err}`);

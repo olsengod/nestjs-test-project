@@ -11,25 +11,27 @@ let AllExceptionsFilter = class AllExceptionsFilter {
     catch(exception, host) {
         const ctx = host.switchToHttp();
         const response = ctx.getResponse();
-        const request = ctx.getRequest();
-        const exceptionInfo = exception instanceof common_1.HttpException
-            ? {
-                statusCode: exception.message.statusCode,
-                error: exception.message.error,
-                data: exception.message.message.length
-                    ? exception.message.message
-                    : null,
+        const exceptionInfo = {
+            statusCode: 400,
+            data: [],
+        };
+        if (exception instanceof common_1.HttpException) {
+            exceptionInfo.statusCode = exception.message.statusCode;
+            if (exception.message instanceof Array) {
+                exceptionInfo.data = exception.message.map((error) => {
+                    return Object.values(error.constraints);
+                });
             }
-            : {
-                statusCode: 500,
-                error: 'Internal server error',
-                data: null,
-            };
+            else {
+                exceptionInfo.data = [exception.message.error];
+            }
+        }
+        else {
+            exceptionInfo.statusCode = common_1.HttpStatus.INTERNAL_SERVER_ERROR;
+            exceptionInfo.data = ['Internal server error'];
+        }
         response.status(exceptionInfo.statusCode).json({
             statusCode: exceptionInfo.statusCode,
-            error: exceptionInfo.error,
-            timestamp: new Date().toISOString(),
-            path: request.url,
             data: exceptionInfo.data,
         });
     }

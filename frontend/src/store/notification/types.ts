@@ -1,7 +1,7 @@
 export interface NotifState {
   exists: boolean
   title: string
-  description: string | undefined
+  description: string[]
   level: Level
 }
 

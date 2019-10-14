@@ -33,7 +33,7 @@ export default async function initDB(dbModel: Model<any>): Promise<void> {
 
     dbModel.count((err: string, count: number) => {
       if (!err) {
-        console.log(`[MONGODB] Database was successfuly initialised and contain ${count} documents`);
+        console.log(`[MONGODB] Database was successfully initialised and contain ${count} documents`);
       } else {
         console.log(`[MONGODB] ${err}`);
         throw new InternalServerErrorException();

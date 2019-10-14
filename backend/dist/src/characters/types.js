@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const class_validator_1 = require("class-validator");
+const class_transformer_1 = require("class-transformer");
 class GetCharactersDto {
 }
 __decorate([
@@ -19,12 +20,14 @@ __decorate([
     __metadata("design:type", String)
 ], GetCharactersDto.prototype, "nameStartsWith", void 0);
 __decorate([
+    class_transformer_1.Transform(offset => parseInt(offset, 10)),
     class_validator_1.IsInt({
         message: 'Parameter offset should be an integer',
     }),
     __metadata("design:type", Number)
 ], GetCharactersDto.prototype, "offset", void 0);
 __decorate([
+    class_transformer_1.Transform(limit => parseInt(limit, 10)),
     class_validator_1.IsInt({
         message: 'Parameter limit should be an integer',
     }),

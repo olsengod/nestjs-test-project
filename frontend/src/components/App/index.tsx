@@ -17,9 +17,19 @@ class App extends React.Component<AppProps> {
     if (this.props.notification.exists && !prevProps.notification.exists) {
       notification[this.props.notification.level]({
         message: this.props.notification.title,
-        description: this.props.notification.description,
+        description: this.getNotifDescription(),
         duration: 3
       })
+    }
+  }
+
+  getNotifDescription = () => {
+    if (this.props.notification.description.length) {
+      return (
+        <ul>
+          {this.props.notification.description.map((item, i) => <li key={i}>{item}</li>)}
+        </ul>
+      )
     }
   }
 

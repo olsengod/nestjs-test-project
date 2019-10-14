@@ -14,9 +14,7 @@ export class CharactersController {
 
   @Get()
   async getCharacters(
-    @Query('nameStartsWith') nameStartsWith: GetCharactersDto['nameStartsWith'],
-    @Query('offset', new ParseIntPipe()) offset: GetCharactersDto['offset'],
-    @Query('limit', new ParseIntPipe()) limit: GetCharactersDto['limit'],
+    @Query() { nameStartsWith, offset, limit }: GetCharactersDto,
   ) {
     return await this.charactersService.getCharacters(nameStartsWith, offset, limit);
   }

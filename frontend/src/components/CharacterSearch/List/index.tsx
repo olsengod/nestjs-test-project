@@ -7,7 +7,7 @@ import { CharState } from '../../../store/character/types';
 import { setCharList, setCharOffset } from '../../../store/character/actions';
 import { AppState } from '../../../store';
 
-import CharacterItem from './CharacterItem';
+import CharacterItem from './Item';
 
 interface CharacterListProps {
   setCharList: typeof setCharList
