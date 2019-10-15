@@ -1,7 +1,7 @@
 import { Injectable, Inject, OnApplicationBootstrap } from '@nestjs/common';
 import { Model } from 'mongoose';
 
-import { Character } from './types';
+import { Character, GetCharactersDto } from './types';
 import charactersCfg from '../../config/characters';
 import initDatabase from '../helpers/initDB';
 
@@ -16,7 +16,7 @@ export class CharactersService implements OnApplicationBootstrap {
     await initDatabase(this.characterModel);
   }
 
-  async getCharacters(nameStartsWith: string, offset: number, limit: number) {
+  async getCharacters({ nameStartsWith, offset, limit }: GetCharactersDto) {
     try {
       let results = [];
       const total = await this.characterModel.

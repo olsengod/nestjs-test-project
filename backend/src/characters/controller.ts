@@ -2,7 +2,6 @@ import {
   Controller,
   Get,
   Query,
-  ParseIntPipe,
 } from '@nestjs/common';
 
 import { CharactersService } from './service';
@@ -14,8 +13,8 @@ export class CharactersController {
 
   @Get()
   async getCharacters(
-    @Query() { nameStartsWith, offset, limit }: GetCharactersDto,
+    @Query() getCharactersDto: GetCharactersDto,
   ) {
-    return await this.charactersService.getCharacters(nameStartsWith, offset, limit);
+    return await this.charactersService.getCharacters(getCharactersDto);
   }
 }
