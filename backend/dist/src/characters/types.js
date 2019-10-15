@@ -9,25 +9,48 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const type_graphql_1 = require("type-graphql");
 const class_validator_1 = require("class-validator");
-const class_transformer_1 = require("class-transformer");
-class GetCharactersDto {
-}
+let CharacterGQL = class CharacterGQL {
+};
 __decorate([
+    type_graphql_1.Field(),
+    __metadata("design:type", String)
+], CharacterGQL.prototype, "id", void 0);
+__decorate([
+    type_graphql_1.Field(),
+    __metadata("design:type", String)
+], CharacterGQL.prototype, "name", void 0);
+__decorate([
+    type_graphql_1.Field({ nullable: true }),
+    __metadata("design:type", String)
+], CharacterGQL.prototype, "description", void 0);
+__decorate([
+    type_graphql_1.Field({ nullable: true }),
+    __metadata("design:type", String)
+], CharacterGQL.prototype, "resourceURI", void 0);
+CharacterGQL = __decorate([
+    type_graphql_1.ObjectType()
+], CharacterGQL);
+exports.CharacterGQL = CharacterGQL;
+let GetCharactersArgs = class GetCharactersArgs {
+};
+__decorate([
+    type_graphql_1.Field(),
     class_validator_1.IsString({
         message: 'Parameter nameStartsWith should be a string',
     }),
     __metadata("design:type", String)
-], GetCharactersDto.prototype, "nameStartsWith", void 0);
+], GetCharactersArgs.prototype, "nameStartsWith", void 0);
 __decorate([
-    class_transformer_1.Transform(offset => parseInt(offset, 10)),
+    type_graphql_1.Field(type => type_graphql_1.Int),
     class_validator_1.IsInt({
         message: 'Parameter offset should be an integer',
     }),
     __metadata("design:type", Number)
-], GetCharactersDto.prototype, "offset", void 0);
+], GetCharactersArgs.prototype, "offset", void 0);
 __decorate([
-    class_transformer_1.Transform(limit => parseInt(limit, 10)),
+    type_graphql_1.Field(type => type_graphql_1.Int),
     class_validator_1.IsInt({
         message: 'Parameter limit should be an integer',
     }),
@@ -38,6 +61,9 @@ __decorate([
         message: 'Maximum limit is $constraint1 characters, but actual is $value',
     }),
     __metadata("design:type", Number)
-], GetCharactersDto.prototype, "limit", void 0);
-exports.GetCharactersDto = GetCharactersDto;
+], GetCharactersArgs.prototype, "limit", void 0);
+GetCharactersArgs = __decorate([
+    type_graphql_1.ArgsType()
+], GetCharactersArgs);
+exports.GetCharactersArgs = GetCharactersArgs;
 //# sourceMappingURL=types.js.map

@@ -19,15 +19,15 @@ let CharactersResolver = class CharactersResolver {
     constructor(charactersService) {
         this.charactersService = charactersService;
     }
-    async getCharacters(getCharactersDto) {
-        return await this.charactersService.getCharacters(getCharactersDto);
+    async getCharacters(getCharactersArgs) {
+        return await this.charactersService.getCharacters(getCharactersArgs);
     }
 };
 __decorate([
     graphql_1.Query(returns => [types_1.CharacterGQL]),
     __param(0, graphql_1.Args()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [types_1.GetCharactersDto]),
+    __metadata("design:paramtypes", [types_1.GetCharactersArgs]),
     __metadata("design:returntype", Promise)
 ], CharactersResolver.prototype, "getCharacters", null);
 CharactersResolver = __decorate([
@@ -35,4 +35,4 @@ CharactersResolver = __decorate([
     __metadata("design:paramtypes", [service_1.CharactersService])
 ], CharactersResolver);
 exports.CharactersResolver = CharactersResolver;
-//# sourceMappingURL=controller.js.map
+//# sourceMappingURL=resolver.js.map

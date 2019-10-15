@@ -1,7 +1,7 @@
 import { Injectable, Inject, OnApplicationBootstrap } from '@nestjs/common';
 import { Model } from 'mongoose';
 
-import { Character } from './types';
+import { CharacterDB, CharacterGQL, GetCharactersArgs } from './types';
 import charactersCfg from '../../config/characters';
 import initDatabase from '../helpers/initDB';
 
@@ -9,14 +9,14 @@ import initDatabase from '../helpers/initDB';
 export class CharactersService implements OnApplicationBootstrap {
   constructor(
     @Inject(charactersCfg.model_provider)
-    private readonly characterModel: Model<Character>,
+    private readonly characterModel: Model<CharacterDB>,
   ) {}
 
   async onApplicationBootstrap(): Promise<void> {
     await initDatabase(this.characterModel);
   }
 
-  async getCharacters(nameStartsWith: string, offset: number, limit: number) {
+  async getCharacters({ nameStartsWith, offset, limit }: GetCharactersArgs) {
     try {
       let results = [];
       const total = await this.characterModel.
@@ -45,12 +45,13 @@ export class CharactersService implements OnApplicationBootstrap {
         description: character.description,
       }));
 
-      return {
-        total,
-        offset,
-        limit,
-        results,
-      };
+      // return {
+      //   total,
+      //   offset,
+      //   limit,
+      //   results,
+      // };
+      return results as CharacterGQL[];
     } catch (err) {
       console.log(`[CHARACTERS SERVICE] ${err}`);
     }

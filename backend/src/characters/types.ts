@@ -1,27 +1,44 @@
 import * as mongoose from 'mongoose';
+import { Field, Int, ObjectType, ArgsType } from 'type-graphql';
 import { IsString, IsInt, Min, Max } from 'class-validator';
-import { Transform } from 'class-transformer';
 
-export interface Character extends mongoose.Document {
+export interface CharacterDB extends mongoose.Document {
   id: string;
   name: string;
   description: string;
   resourceURI: string;
 }
 
-export class GetCharactersDto {
+@ObjectType()
+export class CharacterGQL {
+  @Field()
+  id: string;
+
+  @Field()
+  name: string;
+
+  @Field({ nullable: true })
+  description?: string;
+
+  @Field({ nullable: true })
+  resourceURI?: string;
+}
+
+@ArgsType()
+export class GetCharactersArgs {
+  @Field()
   @IsString({
     message: 'Parameter nameStartsWith should be a string',
   })
   readonly nameStartsWith: string;
 
-  @Transform(offset => parseInt(offset, 10))
+  @Field(type => Int)
   @IsInt({
     message: 'Parameter offset should be an integer',
   })
   readonly offset: number;
 
-  @Transform(limit => parseInt(limit, 10))
+  @Field(type => Int)
   @IsInt({
     message: 'Parameter limit should be an integer',
   })

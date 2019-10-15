@@ -23,7 +23,7 @@ let CharactersService = class CharactersService {
     async onApplicationBootstrap() {
         await initDB_1.default(this.characterModel);
     }
-    async getCharacters(nameStartsWith, offset, limit) {
+    async getCharacters({ nameStartsWith, offset, limit }) {
         try {
             let results = [];
             const total = await this.characterModel.
@@ -48,12 +48,7 @@ let CharactersService = class CharactersService {
                 name: character.name,
                 description: character.description,
             }));
-            return {
-                total,
-                offset,
-                limit,
-                results,
-            };
+            return results;
         }
         catch (err) {
             console.log(`[CHARACTERS SERVICE] ${err}`);
