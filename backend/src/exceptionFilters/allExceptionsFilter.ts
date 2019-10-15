@@ -1,6 +1,6 @@
 import { ExceptionFilter, Catch, ArgumentsHost, HttpException, HttpStatus } from '@nestjs/common';
 
-import { exceptionResponse } from './types';
+import { ExceptionResponse } from './types';
 
 @Catch()
 export class AllExceptionsFilter implements ExceptionFilter {
@@ -8,7 +8,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse();
     // const request = ctx.getRequest();
-    const exceptionInfo: exceptionResponse = {
+    const exceptionInfo: ExceptionResponse = {
       statusCode: 400,
       data: [],
     };

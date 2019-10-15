@@ -1,4 +1,4 @@
-export interface exceptionResponse {
+export interface ExceptionResponse {
   statusCode: number;
   data: unknown[];
 }

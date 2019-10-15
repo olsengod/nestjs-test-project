@@ -1,5 +1,5 @@
 import * as mongoose from 'mongoose';
-import { IsString, IsInt, Min, Max, IsNumber } from 'class-validator';
+import { IsString, IsInt, Min, Max } from 'class-validator';
 import { Transform } from 'class-transformer';
 
 export interface Character extends mongoose.Document {
