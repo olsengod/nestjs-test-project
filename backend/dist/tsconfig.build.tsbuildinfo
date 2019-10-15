@@ -1270,7 +1270,7 @@
         "signature": "097d4bf3331df1e138ffdcf92e1117f6841bc8337170d927fd955d5ee8a1674b"
       },
       "../src/characters/types.ts": {
-        "version": "dc484fa7b1444b9720c2242ee8c14aea5e065eb982ba5ac484cc8efcc27b800d",
+        "version": "c1c6268b207f4a2cbdd07e5de711b7df85e370ca37a82a3701abb26f1e6482df",
         "signature": "77d2929f142228eb10a9af373b859e9a494108876f0e3cc9f06dde41e3c5ac6f"
       },
       "../src/marvelAPI/types.ts": {
@@ -1458,11 +1458,11 @@
         "signature": "4f2b3e2cbcec9d77e9e80903763d398534d37778074c066fb9176ef02b6e3414"
       },
       "../src/exceptionFilters/types.ts": {
-        "version": "c301b9deb1ed29c24f38b592b79f112c49d00723a0ff242abc5232ee0c4c99df",
-        "signature": "383f736911144f707072beb76bdda430816a798a3df5d68d1d5226c4417b41bc"
+        "version": "eb0b1f90ad6175884a8b32d5855f82d124e39c85884d6e7ada509b64fce0aa42",
+        "signature": "b65c34a1fa1b550041399387cade026ce053e5372898f8a12dae866424000551"
       },
       "../src/exceptionFilters/allExceptionsFilter.ts": {
-        "version": "8e1259ef07a18a0c98a1b571ce3061e0c4e6214b468ba33bc5dcf49deb42bef2",
+        "version": "bd02600ef630bdf1358668fca5d168d15f8a5c88ed8c141546c8fab9c702be88",
         "signature": "a718231617eac59c776c5ece6b9deebb09e610a6a0eb0b26921b7cb22a0b6ca8"
       },
       "../src/main.ts": {

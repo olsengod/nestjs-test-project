@@ -1,15 +1,23 @@
-import { take, put, delay, fork, cancel, call, race, select } from 'redux-saga/effects';
+import { take, put, delay, fork, cancel, select } from 'redux-saga/effects';
 
 import { SET_CHAR_NAME, SET_CHAR_OFFSET, CharState,  } from '../character/types';
 import { getCharacters } from '../../api/requests';
-import { Data, Result, RequestArgs } from '../../api/types';
+import { Data, RequestArgs } from '../../api/types';
 import { setCharList, setCharLoader } from '../character/actions';
-import { setNotification, clearNotification } from '../notification/actions';
+import { clearNotification } from '../notification/actions';
+import exponentialBackoff from '../../helpers/exponentialBackoff';
 
-const MAX_RETRIES: number = 10;
-const MAX_WAIT_INTERVAL: number = 2000;
+function* handleGetCharactersSuccess(response: any) {
+  let characters: Data['results'] = response.data.results;
 
-function* exponentialBackoff(input: string, debounce: boolean) {
+  let total: CharState['total'] = response.data.total;
+  yield put(setCharList({
+    list: characters,
+    total,
+  }));  
+}
+
+function* handleCharactersSearch(input: string, debounce: boolean) {
   try {
     yield put(setCharLoader(true));
     if (debounce) yield delay(500);
@@ -23,83 +31,21 @@ function* exponentialBackoff(input: string, debounce: boolean) {
       return;
     }
 
-    let retries: number = 0;
-    let retry: boolean = false;
+    const charState = yield select(state => state.character);
+    let getCharactersArgs: RequestArgs = {
+      nameStartsWith: input,
+      offset: charState.offset,
+      limit: charState.limit
+    };
 
-    do {
-      let waitTime: number = yield Math.min(getWaitTimeExp(retries), MAX_WAIT_INTERVAL);
-      console.log('[SAGA] WAIT TIME:', waitTime);
+    yield exponentialBackoff(getCharacters, getCharactersArgs, handleGetCharactersSuccess);
 
-      const charState = yield select(state => state.character);
-      let getCharactersArgs: RequestArgs = {
-        nameStartsWith: input,
-        offset: charState.offset,
-        limit: charState.limit
-      };
-
-      let { response } = yield race({
-        response: call(getCharacters, getCharactersArgs),
-        timeOut: delay(waitTime)
-      })
-
-      if (response) {
-        if (response.status === 200) {
-          retry = false;
-          console.log('response', response);
-          let characters: Data['results'] = response.data.results;
-          let charList: CharState['list'] = yield characters.map((char: Result) => {
-            return {
-              id: char.id,
-              name: char.name,
-              description: char.description
-            };
-          });
-
-          let total: CharState['total'] = response.data.total;
-          yield put(setCharList({
-            list: charList,
-            total,
-          }));
-          yield put(setCharLoader(false));
-
-        } else if (response.status === (400 || 401 || 409)) {
-          retry = false;
-          yield put(setNotification({
-            exists: true,
-            title: 'Client error',
-            description: response.data.data,
-            level: 'warning'
-          }))
-          yield put(clearNotification());
-          yield put(setCharLoader(false));
-
-        } else {
-          console.log('[SAGA] STATUS 500');
-          retry = false;
-          yield put(setNotification({
-            exists: true,
-            title: 'Server error',
-            description: response.data,
-            level: 'error'
-          }))
-          yield put(clearNotification());
-          yield put(setCharLoader(false));
-        }
-
-      } else {
-        console.log('[SAGA] TIME OUT');
-        retry = true;
-      }
-    } while (retry && (retries++ < MAX_RETRIES))
+    yield put(setCharLoader(false));
+    yield put(clearNotification());
 
   } catch(err) {
     console.log('[ERROR IN SAGA]', err);
   }  
-}
-
-function getWaitTimeExp(retryCount: number) {
-  let waitTime: number = Math.pow(2, retryCount) * 100;
-  return waitTime;
 }
 
 function* watchSearchInput() {
@@ -109,7 +55,7 @@ function* watchSearchInput() {
     if (task) {
       yield cancel(task)
     }
-    task = yield fork(exponentialBackoff, payload, true);
+    task = yield fork(handleCharactersSearch, payload, true);
   }
 }
 
@@ -121,7 +67,7 @@ function* watchOffsetChange() {
     if (task) {
       yield cancel(task)
     }
-    task = yield fork(exponentialBackoff, searchName, false);
+    task = yield fork(handleCharactersSearch, searchName, false);
   }
 }
 

@@ -79,6 +79,7 @@ interface GetCharactersArgs {
 //Response objects
 interface ResponseResult {
   status: number
+  clientErrorStatuses: number[]
   data: ResponseType | unknown[]
 }
 
