@@ -10,7 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const type_graphql_1 = require("type-graphql");
-const class_validator_1 = require("class-validator");
 let CharacterGQL = class CharacterGQL {
 };
 __decorate([
@@ -33,37 +32,26 @@ CharacterGQL = __decorate([
     type_graphql_1.ObjectType()
 ], CharacterGQL);
 exports.CharacterGQL = CharacterGQL;
-let GetCharactersArgs = class GetCharactersArgs {
+let PaginatedListGQL = class PaginatedListGQL {
 };
 __decorate([
-    type_graphql_1.Field(),
-    class_validator_1.IsString({
-        message: 'Parameter nameStartsWith should be a string',
-    }),
-    __metadata("design:type", String)
-], GetCharactersArgs.prototype, "nameStartsWith", void 0);
-__decorate([
-    type_graphql_1.Field(type => type_graphql_1.Int),
-    class_validator_1.IsInt({
-        message: 'Parameter offset should be an integer',
-    }),
+    type_graphql_1.Field(() => type_graphql_1.Int),
     __metadata("design:type", Number)
-], GetCharactersArgs.prototype, "offset", void 0);
+], PaginatedListGQL.prototype, "total", void 0);
 __decorate([
-    type_graphql_1.Field(type => type_graphql_1.Int),
-    class_validator_1.IsInt({
-        message: 'Parameter limit should be an integer',
-    }),
-    class_validator_1.Min(1, {
-        message: 'Minimal limit is $constraint1 characters, but actual is $value',
-    }),
-    class_validator_1.Max(100, {
-        message: 'Maximum limit is $constraint1 characters, but actual is $value',
-    }),
+    type_graphql_1.Field(() => type_graphql_1.Int),
     __metadata("design:type", Number)
-], GetCharactersArgs.prototype, "limit", void 0);
-GetCharactersArgs = __decorate([
-    type_graphql_1.ArgsType()
-], GetCharactersArgs);
-exports.GetCharactersArgs = GetCharactersArgs;
+], PaginatedListGQL.prototype, "offset", void 0);
+__decorate([
+    type_graphql_1.Field(() => type_graphql_1.Int),
+    __metadata("design:type", Number)
+], PaginatedListGQL.prototype, "limit", void 0);
+__decorate([
+    type_graphql_1.Field(() => [CharacterGQL]),
+    __metadata("design:type", Array)
+], PaginatedListGQL.prototype, "characters", void 0);
+PaginatedListGQL = __decorate([
+    type_graphql_1.ObjectType()
+], PaginatedListGQL);
+exports.PaginatedListGQL = PaginatedListGQL;
 //# sourceMappingURL=types.js.map

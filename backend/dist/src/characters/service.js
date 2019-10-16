@@ -25,7 +25,7 @@ let CharactersService = class CharactersService {
     }
     async getCharacters({ nameStartsWith, offset, limit }) {
         try {
-            let results = [];
+            let characters = [];
             const total = await this.characterModel.
                 find({ name: { $regex: '^' + nameStartsWith, $options: '<i>' } }).
                 countDocuments().
@@ -35,20 +35,20 @@ let CharactersService = class CharactersService {
                     total,
                     offset,
                     limit,
-                    results,
+                    characters,
                 };
             }
-            const characters = await this.characterModel.
+            characters = await this.characterModel.
                 find({ name: { $regex: '^' + nameStartsWith, $options: '<i>' } }).
                 skip(offset).
                 limit(limit).
                 exec();
-            results = characters.map(character => ({
-                id: character.id,
-                name: character.name,
-                description: character.description,
-            }));
-            return results;
+            return {
+                total,
+                offset,
+                limit,
+                characters,
+            };
         }
         catch (err) {
             console.log(`[CHARACTERS SERVICE] ${err}`);

@@ -1,9 +1,9 @@
-import * as mongoose from 'mongoose';
+import { Schema, Connection } from 'mongoose';
 
-const CharacterSchema = new mongoose.Schema({
+const CharacterSchema = new Schema({
   name: { type: String, required: true },
   description: { type: String, required: false },
-  resourceURI: { type: String, required: true },
+  resourceURI: { type: String, required: false },
 });
 
-export const CharacterModel = (connection: mongoose.Connection) => connection.model('Character', CharacterSchema);
+export const CharacterModel = (connection: Connection) => connection.model('Character', CharacterSchema);

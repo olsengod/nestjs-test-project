@@ -1,2 +1,2 @@
-import * as mongoose from 'mongoose';
-export declare const CharacterModel: (connection: mongoose.Connection) => mongoose.Model<mongoose.Document, {}>;
+import { Connection } from 'mongoose';
+export declare const CharacterModel: (connection: Connection) => import("mongoose").Model<import("mongoose").Document, {}>;

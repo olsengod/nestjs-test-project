@@ -1,7 +1,8 @@
 import { Injectable, Inject, OnApplicationBootstrap } from '@nestjs/common';
 import { Model } from 'mongoose';
 
-import { CharacterDB, CharacterGQL, GetCharactersArgs } from './types';
+import { CharacterDB } from './types';
+import { GetPaginatedListArgs } from './dto';
 import charactersCfg from '../../config/characters';
 import initDatabase from '../helpers/initDB';
 
@@ -16,9 +17,9 @@ export class CharactersService implements OnApplicationBootstrap {
     await initDatabase(this.characterModel);
   }
 
-  async getCharacters({ nameStartsWith, offset, limit }: GetCharactersArgs) {
+  async getCharacters({ nameStartsWith, offset, limit }: GetPaginatedListArgs) {
     try {
-      let results = [];
+      let characters = [];
       const total = await this.characterModel.
         find({ name: {$regex : '^' + nameStartsWith, $options: '<i>'}}).
         countDocuments().
@@ -29,29 +30,23 @@ export class CharactersService implements OnApplicationBootstrap {
           total,
           offset,
           limit,
-          results,
+          characters,
         };
       }
 
-      const characters = await this.characterModel.
+      characters = await this.characterModel.
         find({ name: {$regex : '^' + nameStartsWith, $options: '<i>'}}).
         skip(offset).
         limit(limit).
         exec();
 
-      results = characters.map(character => ({
-        id: character.id,
-        name: character.name,
-        description: character.description,
-      }));
+      return {
+        total,
+        offset,
+        limit,
+        characters,
+      };
 
-      // return {
-      //   total,
-      //   offset,
-      //   limit,
-      //   results,
-      // };
-      return results as CharacterGQL[];
     } catch (err) {
       console.log(`[CHARACTERS SERVICE] ${err}`);
     }

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { gql } from 'apollo-boost';
 
 import httpCfg from '../config/http';
 import { ResponseType, ResponseResultType, RequestArgs } from './types';

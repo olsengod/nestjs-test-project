@@ -1,8 +1,7 @@
-import * as mongoose from 'mongoose';
-import { Field, Int, ObjectType, ArgsType } from 'type-graphql';
-import { IsString, IsInt, Min, Max } from 'class-validator';
+import { Document } from 'mongoose';
+import { Field, Int, ObjectType } from 'type-graphql';
 
-export interface CharacterDB extends mongoose.Document {
+export interface CharacterDB extends Document {
   id: string;
   name: string;
   description: string;
@@ -24,29 +23,17 @@ export class CharacterGQL {
   resourceURI?: string;
 }
 
-@ArgsType()
-export class GetCharactersArgs {
-  @Field()
-  @IsString({
-    message: 'Parameter nameStartsWith should be a string',
-  })
-  readonly nameStartsWith: string;
+@ObjectType()
+export class PaginatedListGQL {
+  @Field(() => Int)
+  total: number;
 
-  @Field(type => Int)
-  @IsInt({
-    message: 'Parameter offset should be an integer',
-  })
-  readonly offset: number;
+  @Field(() => Int)
+  offset: number;
 
-  @Field(type => Int)
-  @IsInt({
-    message: 'Parameter limit should be an integer',
-  })
-  @Min(1, {
-    message: 'Minimal limit is $constraint1 characters, but actual is $value',
-  })
-  @Max(100, {
-    message: 'Maximum limit is $constraint1 characters, but actual is $value',
-  })
-  readonly limit: number;
+  @Field(() => Int)
+  limit: number;
+
+  @Field(() => [CharacterGQL])
+  characters: [CharacterGQL];
 }

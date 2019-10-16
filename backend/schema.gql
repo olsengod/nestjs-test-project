@@ -8,8 +8,16 @@ type CharacterGQL {
   name: String!
   description: String
   resourceURI: String
+  characters(nameStartsWith: String!, offset: Int!, limit: Int!): [CharacterGQL!]!
+}
+
+type PaginatedListGQL {
+  total: Int!
+  offset: Int!
+  limit: Int!
+  characters: [CharacterGQL!]!
 }
 
 type Query {
-  getCharacters(nameStartsWith: String!, offset: Int!, limit: Int!): [CharacterGQL!]!
+  getPaginatedList(nameStartsWith: String!, offset: Int!, limit: Int!): PaginatedListGQL!
 }

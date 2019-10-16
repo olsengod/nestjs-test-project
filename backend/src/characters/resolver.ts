@@ -1,16 +1,18 @@
-import { Args, Query, Resolver } from '@nestjs/graphql';
+import { Args, Query, Resolver, ResolveProperty } from '@nestjs/graphql';
 
 import { CharactersService } from './service';
-import { CharacterGQL, GetCharactersArgs } from './types';
+import { CharacterGQL, PaginatedListGQL } from './types';
+import { GetPaginatedListArgs } from './dto';
 
-@Resolver(of => CharacterGQL)
+@Resolver(() => CharacterGQL)
 export class CharactersResolver {
   constructor(private readonly charactersService: CharactersService) {}
 
-  @Query(returns => [CharacterGQL])
-  async getCharacters(
-    @Args() getCharactersArgs: GetCharactersArgs,
+  @Query(() => PaginatedListGQL)
+  @ResolveProperty('characters', () => [CharacterGQL])
+  async getPaginatedList(
+    @Args() getPaginatedListArgs: GetPaginatedListArgs,
   ) {
-    return await this.charactersService.getCharacters(getCharactersArgs);
+    return await this.charactersService.getCharacters(getPaginatedListArgs);
   }
 }

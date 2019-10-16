@@ -15,23 +15,25 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const graphql_1 = require("@nestjs/graphql");
 const service_1 = require("./service");
 const types_1 = require("./types");
+const dto_1 = require("./dto");
 let CharactersResolver = class CharactersResolver {
     constructor(charactersService) {
         this.charactersService = charactersService;
     }
-    async getCharacters(getCharactersArgs) {
-        return await this.charactersService.getCharacters(getCharactersArgs);
+    async getPaginatedList(getPaginatedListArgs) {
+        return await this.charactersService.getCharacters(getPaginatedListArgs);
     }
 };
 __decorate([
-    graphql_1.Query(returns => [types_1.CharacterGQL]),
+    graphql_1.Query(() => types_1.PaginatedListGQL),
+    graphql_1.ResolveProperty('characters', () => [types_1.CharacterGQL]),
     __param(0, graphql_1.Args()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [types_1.GetCharactersArgs]),
+    __metadata("design:paramtypes", [dto_1.GetPaginatedListArgs]),
     __metadata("design:returntype", Promise)
-], CharactersResolver.prototype, "getCharacters", null);
+], CharactersResolver.prototype, "getPaginatedList", null);
 CharactersResolver = __decorate([
-    graphql_1.Resolver(of => types_1.CharacterGQL),
+    graphql_1.Resolver(() => types_1.CharacterGQL),
     __metadata("design:paramtypes", [service_1.CharactersService])
 ], CharactersResolver);
 exports.CharactersResolver = CharactersResolver;

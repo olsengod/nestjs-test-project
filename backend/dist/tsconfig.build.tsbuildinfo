@@ -2890,8 +2890,12 @@
         "signature": "575b8a73e314f733677c0aa7cdbd505a653d37684da24306b6110c6d9137e3ca"
       },
       "../src/characters/types.ts": {
-        "version": "9b9d31800056f3f770384d0679e5f3009b274358d3ccc560f5bb1c3571f3f3a1",
-        "signature": "cec21ff74a2ddca16a98b028be018378b5eb8ec1fe4694b4ac513f94a95d126e"
+        "version": "d559dd21e3c7ef31c8b9eb93540bef95faa2e64602c1e4d6f6eee81164b15c4f",
+        "signature": "d68d73cf85b4162d2c1e6df9ebd4b59136fee70bcc3466e44cbd090a32a70efe"
+      },
+      "../src/characters/dto.ts": {
+        "version": "5d5eb16e2d04945ee4ff642c7881f7082f1367b79fb4bcfeabd95d35c85e95f2",
+        "signature": "4cefe132de57785bb48c96ca2c60200f30d3f11eef30c8e4bb0d28f26105cabf"
       },
       "../src/marvelAPI/types.ts": {
         "version": "ef707fc62f313d95823a1ef01f5e01a9cc2cbe94a8f4773b30784efbacd47549",
@@ -2906,16 +2910,16 @@
         "signature": "131733c629c6af37ff3e5494d60f0ea0e55621229943576c49a75e544f1e55e7"
       },
       "../src/characters/service.ts": {
-        "version": "f5784202807fc679788e338f72504708d0f7922c22aa3c1aa0e1e7263cd6ada8",
-        "signature": "c6ddd33e037b6dc90dad697a9ebdb35253f2ee510dd141ec7815cdcdd51eae60"
+        "version": "c918f91f4ebe77824ca66d467cf0e4bff43d6e3c743f0b11f93a941eea04398c",
+        "signature": "055af715a864006ce13d9a120580a3732a78eb9c53b36f641e5816f55a0c8327"
       },
       "../src/characters/resolver.ts": {
-        "version": "73b6bcea0f07c6c0fb50d7e0ae3edbd0aceb6a650538bc5faa397988c8a354e4",
-        "signature": "ad24068dd720ac6bba20eab838d168de85aa1fcc536b400e3f0b61ab60d1a65b"
+        "version": "9ccfe24cea1e3f7e401e35460e648fa937ed8fc27eb3356656b1c269b5cb6d55",
+        "signature": "6d7666a38ed956d12af7ca2f08f42d313104f1353686130831598d3e381109b2"
       },
       "../src/characters/model.ts": {
-        "version": "7b5c83d1af4e774afec316ee66d796e80b299033a36224dd72de76ac3ba870f5",
-        "signature": "68b5d9db0ff83a66adaac1539d5dadd6e0f13fc49ee4a4271cda4c246732bed6"
+        "version": "9716a24fdbe6ee02e62c6faf1bfbd4f28e3f0740a15f73180d8e4932ddf80448",
+        "signature": "40eb9b298d657a1683928176a18b3127a4cefdee90403aa43b8f3937017a469e"
       },
       "../src/characters/providers.ts": {
         "version": "5e6a64c47cf3f94c210ce66a2d3b0583fb507329f378917be8a7a9e51038fb5b",
@@ -8032,7 +8036,12 @@
       "../src/characters/types.ts": [
         "../node_modules/@types/mongoose/index.d.ts",
         "../node_modules/type-graphql/dist/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../src/characters/dto.ts": [
         "../node_modules/class-validator/index.d.ts",
+        "../node_modules/type-graphql/dist/index.d.ts",
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -8061,6 +8070,7 @@
         "../node_modules/@nestjs/common/index.d.ts",
         "../node_modules/@types/mongoose/index.d.ts",
         "../src/characters/types.ts",
+        "../src/characters/dto.ts",
         "../config/characters.ts",
         "../src/helpers/initDB.ts",
         "../node_modules/@types/node/util.d.ts",
@@ -8070,6 +8080,7 @@
         "../node_modules/@nestjs/graphql/index.d.ts",
         "../src/characters/service.ts",
         "../src/characters/types.ts",
+        "../src/characters/dto.ts",
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -13494,11 +13505,12 @@
       "../src/characters/service.ts": [
         "../node_modules/@types/mongoose/index.d.ts",
         "../src/characters/types.ts",
+        "../src/characters/dto.ts",
         "../node_modules/@nestjs/common/index.d.ts"
       ],
       "../src/characters/resolver.ts": [
         "../src/characters/service.ts",
-        "../src/characters/types.ts"
+        "../src/characters/dto.ts"
       ],
       "../src/characters/model.ts": [
         "../node_modules/@types/mongoose/index.d.ts"
@@ -15078,6 +15090,7 @@
       "../src/marvelAPI/requests.ts",
       "../src/helpers/initDB.ts",
       "../src/characters/service.ts",
+      "../src/characters/resolver.ts",
       "../src/characters/model.ts",
       "../src/characters/providers.ts",
       "../src/characters/module.ts",
@@ -15209,7 +15222,7 @@
       "../node_modules/@types/webpack/index.d.ts",
       "../node_modules/@types/yargs-parser/index.d.ts",
       "../node_modules/@types/yargs/index.d.ts",
-      "../src/characters/resolver.ts"
+      "../src/characters/dto.ts"
     ]
   },
   "version": "3.6.3"
