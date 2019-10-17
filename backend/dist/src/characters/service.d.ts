@@ -10,6 +10,6 @@ export declare class CharactersService implements OnApplicationBootstrap {
         total: number;
         offset: number;
         limit: number;
-        characters: any[];
+        results: any[];
     }>;
 }

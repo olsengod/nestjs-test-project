@@ -49,7 +49,7 @@ __decorate([
 __decorate([
     type_graphql_1.Field(() => [CharacterGQL]),
     __metadata("design:type", Array)
-], PaginatedListGQL.prototype, "characters", void 0);
+], PaginatedListGQL.prototype, "results", void 0);
 PaginatedListGQL = __decorate([
     type_graphql_1.ObjectType()
 ], PaginatedListGQL);

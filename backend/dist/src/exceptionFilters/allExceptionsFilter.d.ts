@@ -1,4 +1,5 @@
-import { ExceptionFilter, ArgumentsHost } from '@nestjs/common';
-export declare class AllExceptionsFilter implements ExceptionFilter {
-    catch(exception: unknown, host: ArgumentsHost): void;
+import { ArgumentsHost } from '@nestjs/common';
+import { GqlExceptionFilter } from '@nestjs/graphql';
+export declare class AllExceptionsFilter implements GqlExceptionFilter {
+    catch(exception: unknown, host: ArgumentsHost): unknown;
 }

@@ -5,25 +5,25 @@ import { Field, Int, ArgsType } from 'type-graphql';
 export class GetPaginatedListArgs {
   @Field()
   @IsString({
-    message: 'Parameter nameStartsWith should be a string',
+    message: 'Parameter $property should be a string',
   })
   readonly nameStartsWith: string;
 
   @Field(() => Int)
   @IsInt({
-    message: 'Parameter offset should be an integer',
+    message: 'Parameter $property should be an integer',
   })
   readonly offset: number;
 
   @Field(() => Int)
   @IsInt({
-    message: 'Parameter limit should be an integer',
+    message: 'Parameter $property should be an integer',
   })
   @Min(1, {
-    message: 'Minimal limit is $constraint1 characters, but actual is $value',
+    message: 'Minimal $property is $constraint1 character, but actual is $value',
   })
   @Max(100, {
-    message: 'Maximum limit is $constraint1 characters, but actual is $value',
+    message: 'Maximum $property is $constraint1 characters, but actual is $value',
   })
   readonly limit: number;
 }

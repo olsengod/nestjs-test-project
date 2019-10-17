@@ -28,7 +28,7 @@ export default function* exponentialBackoff(request: any, requestArgs: object, s
           yield put(setNotification({
             exists: true,
             title: 'Client error',
-            description: response.data.data,
+            description: response.data,
             level: 'warning'
           }))
           yield put(clearNotification());

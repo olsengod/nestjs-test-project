@@ -35,5 +35,5 @@ export class PaginatedListGQL {
   limit: number;
 
   @Field(() => [CharacterGQL])
-  characters: [CharacterGQL];
+  results: [CharacterGQL];
 }

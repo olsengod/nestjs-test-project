@@ -26,7 +26,7 @@ let CharactersResolver = class CharactersResolver {
 };
 __decorate([
     graphql_1.Query(() => types_1.PaginatedListGQL),
-    graphql_1.ResolveProperty('characters', () => [types_1.CharacterGQL]),
+    graphql_1.ResolveProperty('results', () => [types_1.CharacterGQL]),
     __param(0, graphql_1.Args()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [dto_1.GetPaginatedListArgs]),

@@ -19,7 +19,7 @@ export class CharactersService implements OnApplicationBootstrap {
 
   async getCharacters({ nameStartsWith, offset, limit }: GetPaginatedListArgs) {
     try {
-      let characters = [];
+      let results = [];
       const total = await this.characterModel.
         find({ name: {$regex : '^' + nameStartsWith, $options: '<i>'}}).
         countDocuments().
@@ -30,11 +30,11 @@ export class CharactersService implements OnApplicationBootstrap {
           total,
           offset,
           limit,
-          characters,
+          results,
         };
       }
 
-      characters = await this.characterModel.
+      results = await this.characterModel.
         find({ name: {$regex : '^' + nameStartsWith, $options: '<i>'}}).
         skip(offset).
         limit(limit).
@@ -44,7 +44,7 @@ export class CharactersService implements OnApplicationBootstrap {
         total,
         offset,
         limit,
-        characters,
+        results,
       };
 
     } catch (err) {

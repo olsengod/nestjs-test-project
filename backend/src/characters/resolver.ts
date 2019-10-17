@@ -9,7 +9,7 @@ export class CharactersResolver {
   constructor(private readonly charactersService: CharactersService) {}
 
   @Query(() => PaginatedListGQL)
-  @ResolveProperty('characters', () => [CharacterGQL])
+  @ResolveProperty('results', () => [CharacterGQL])
   async getPaginatedList(
     @Args() getPaginatedListArgs: GetPaginatedListArgs,
   ) {

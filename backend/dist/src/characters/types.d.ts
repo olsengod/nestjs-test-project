@@ -15,5 +15,5 @@ export declare class PaginatedListGQL {
     total: number;
     offset: number;
     limit: number;
-    characters: [CharacterGQL];
+    results: [CharacterGQL];
 }

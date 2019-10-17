@@ -2890,11 +2890,11 @@
         "signature": "575b8a73e314f733677c0aa7cdbd505a653d37684da24306b6110c6d9137e3ca"
       },
       "../src/characters/types.ts": {
-        "version": "d559dd21e3c7ef31c8b9eb93540bef95faa2e64602c1e4d6f6eee81164b15c4f",
-        "signature": "d68d73cf85b4162d2c1e6df9ebd4b59136fee70bcc3466e44cbd090a32a70efe"
+        "version": "61c7501e3ef514c2c472532bcd85dadc0d06b463a61a4e64770d0ab6beea61f0",
+        "signature": "3fddf22245d7db6d09952751245512fd920e2344a56a96ccaa933aeec94deb8c"
       },
       "../src/characters/dto.ts": {
-        "version": "5d5eb16e2d04945ee4ff642c7881f7082f1367b79fb4bcfeabd95d35c85e95f2",
+        "version": "aae3912f5ae93bb771163bdf28c54cd2796c5f4baff7c687c98269e8e3f3c074",
         "signature": "4cefe132de57785bb48c96ca2c60200f30d3f11eef30c8e4bb0d28f26105cabf"
       },
       "../src/marvelAPI/types.ts": {
@@ -2910,12 +2910,12 @@
         "signature": "131733c629c6af37ff3e5494d60f0ea0e55621229943576c49a75e544f1e55e7"
       },
       "../src/characters/service.ts": {
-        "version": "c918f91f4ebe77824ca66d467cf0e4bff43d6e3c743f0b11f93a941eea04398c",
-        "signature": "055af715a864006ce13d9a120580a3732a78eb9c53b36f641e5816f55a0c8327"
+        "version": "05942bb1b94c875092a6508dacf6f6f71f0fec1a8078e49d2589c9e1515ce379",
+        "signature": "50e2f2d6bccc0147fe4ba60a8909945cd931945b883004f3bcf5022468a72b26"
       },
       "../src/characters/resolver.ts": {
-        "version": "9ccfe24cea1e3f7e401e35460e648fa937ed8fc27eb3356656b1c269b5cb6d55",
-        "signature": "6d7666a38ed956d12af7ca2f08f42d313104f1353686130831598d3e381109b2"
+        "version": "7b1854dd64f550aec44ce397a91fd6867ef0f354739a035dcd6d65ccdd50c7c3",
+        "signature": "a470314fe65f092499e2293948e27ad4bbfc53534f35bc197d6bf65419b2f2ca"
       },
       "../src/characters/model.ts": {
         "version": "9716a24fdbe6ee02e62c6faf1bfbd4f28e3f0740a15f73180d8e4932ddf80448",
@@ -2937,17 +2937,17 @@
         "version": "4f2b3e2cbcec9d77e9e80903763d398534d37778074c066fb9176ef02b6e3414",
         "signature": "4f2b3e2cbcec9d77e9e80903763d398534d37778074c066fb9176ef02b6e3414"
       },
-      "../src/exceptionFilters/types.ts": {
-        "version": "eb0b1f90ad6175884a8b32d5855f82d124e39c85884d6e7ada509b64fce0aa42",
-        "signature": "b65c34a1fa1b550041399387cade026ce053e5372898f8a12dae866424000551"
-      },
       "../src/exceptionFilters/allExceptionsFilter.ts": {
-        "version": "bd02600ef630bdf1358668fca5d168d15f8a5c88ed8c141546c8fab9c702be88",
-        "signature": "a718231617eac59c776c5ece6b9deebb09e610a6a0eb0b26921b7cb22a0b6ca8"
+        "version": "fc70954feecc7253da69b8633ef2076e04cc4141d69c237321404a029b8f50e6",
+        "signature": "28fdceca2350746968cc706b28073e6581265afb483889bc32f5bad9f176a588"
       },
       "../src/main.ts": {
         "version": "158ee672e40f61a09e210057bb3d8c6de74377e699b1d8c7167006b6733908b1",
         "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
+      },
+      "../src/exceptionFilters/types.ts": {
+        "version": "eb0b1f90ad6175884a8b32d5855f82d124e39c85884d6e7ada509b64fce0aa42",
+        "signature": "b65c34a1fa1b550041399387cade026ce053e5372898f8a12dae866424000551"
       },
       "../node_modules/@types/anymatch/index.d.ts": {
         "version": "48b52264fa193879a074197839dbb4796fa07e86350ff888e5361e06aa46df76",
@@ -8119,13 +8119,9 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
-      "../src/exceptionFilters/types.ts": [
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
       "../src/exceptionFilters/allExceptionsFilter.ts": [
         "../node_modules/@nestjs/common/index.d.ts",
-        "../src/exceptionFilters/types.ts",
+        "../node_modules/@nestjs/graphql/index.d.ts",
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -8136,6 +8132,10 @@
         "../src/app.module.ts",
         "../config/server.ts",
         "../src/exceptionFilters/allExceptionsFilter.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../src/exceptionFilters/types.ts": [
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -13524,7 +13524,8 @@
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
       "../src/exceptionFilters/allExceptionsFilter.ts": [
-        "../node_modules/@nestjs/common/index.d.ts"
+        "../node_modules/@nestjs/common/index.d.ts",
+        "../node_modules/@nestjs/graphql/index.d.ts"
       ],
       "../node_modules/@types/anymatch/index.d.ts": [
         "../node_modules/@types/node/util.d.ts",
@@ -15086,19 +15087,19 @@
       "../node_modules/type-graphql/dist/utils/index.d.ts",
       "../node_modules/type-graphql/dist/index.d.ts",
       "../src/characters/types.ts",
+      "../src/characters/dto.ts",
       "../src/marvelAPI/types.ts",
       "../src/marvelAPI/requests.ts",
       "../src/helpers/initDB.ts",
       "../src/characters/service.ts",
-      "../src/characters/resolver.ts",
       "../src/characters/model.ts",
       "../src/characters/providers.ts",
       "../src/characters/module.ts",
       "../src/app.module.ts",
       "../node_modules/@types/helmet/index.d.ts",
-      "../src/exceptionFilters/types.ts",
       "../src/exceptionFilters/allExceptionsFilter.ts",
       "../src/main.ts",
+      "../src/exceptionFilters/types.ts",
       "../node_modules/@types/anymatch/index.d.ts",
       "../node_modules/@babel/types/lib/index.d.ts",
       "../node_modules/@types/babel__generator/index.d.ts",
@@ -15222,7 +15223,7 @@
       "../node_modules/@types/webpack/index.d.ts",
       "../node_modules/@types/yargs-parser/index.d.ts",
       "../node_modules/@types/yargs/index.d.ts",
-      "../src/characters/dto.ts"
+      "../src/characters/resolver.ts"
     ]
   },
   "version": "3.6.3"

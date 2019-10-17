@@ -9,31 +9,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
 let AllExceptionsFilter = class AllExceptionsFilter {
     catch(exception, host) {
-        const ctx = host.switchToHttp();
-        const response = ctx.getResponse();
-        const exceptionInfo = {
-            statusCode: 400,
-            data: [],
-        };
         if (exception instanceof common_1.HttpException) {
-            exceptionInfo.statusCode = exception.message.statusCode;
-            if (exception.message instanceof Array) {
-                exceptionInfo.data = exception.message.map((error) => {
-                    return Object.values(error.constraints);
+            if (exception.message.message instanceof Array) {
+                const constraints = [];
+                exception.message.message.forEach(error => {
+                    constraints.push(...Object.values(error.constraints));
                 });
+                exception.message.message = constraints;
             }
             else {
-                exceptionInfo.data = [exception.message.error];
+                exception.message.message = [exception.message.error];
             }
         }
-        else {
-            exceptionInfo.statusCode = common_1.HttpStatus.INTERNAL_SERVER_ERROR;
-            exceptionInfo.data = ['Internal server error'];
-        }
-        response.status(exceptionInfo.statusCode).json({
-            statusCode: exceptionInfo.statusCode,
-            data: exceptionInfo.data,
-        });
+        return exception;
     }
 };
 AllExceptionsFilter = __decorate([

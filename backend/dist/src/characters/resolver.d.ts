@@ -7,6 +7,6 @@ export declare class CharactersResolver {
         total: number;
         offset: number;
         limit: number;
-        characters: any[];
+        results: any[];
     }>;
 }

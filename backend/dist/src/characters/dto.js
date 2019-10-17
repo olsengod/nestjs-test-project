@@ -16,27 +16,27 @@ let GetPaginatedListArgs = class GetPaginatedListArgs {
 __decorate([
     type_graphql_1.Field(),
     class_validator_1.IsString({
-        message: 'Parameter nameStartsWith should be a string',
+        message: 'Parameter $property should be a string',
     }),
     __metadata("design:type", String)
 ], GetPaginatedListArgs.prototype, "nameStartsWith", void 0);
 __decorate([
     type_graphql_1.Field(() => type_graphql_1.Int),
     class_validator_1.IsInt({
-        message: 'Parameter offset should be an integer',
+        message: 'Parameter $property should be an integer',
     }),
     __metadata("design:type", Number)
 ], GetPaginatedListArgs.prototype, "offset", void 0);
 __decorate([
     type_graphql_1.Field(() => type_graphql_1.Int),
     class_validator_1.IsInt({
-        message: 'Parameter limit should be an integer',
+        message: 'Parameter $property should be an integer',
     }),
     class_validator_1.Min(1, {
-        message: 'Minimal limit is $constraint1 characters, but actual is $value',
+        message: 'Minimal $property is $constraint1 character, but actual is $value',
     }),
     class_validator_1.Max(100, {
-        message: 'Maximum limit is $constraint1 characters, but actual is $value',
+        message: 'Maximum $property is $constraint1 characters, but actual is $value',
     }),
     __metadata("design:type", Number)
 ], GetPaginatedListArgs.prototype, "limit", void 0);

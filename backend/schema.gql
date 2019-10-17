@@ -8,14 +8,14 @@ type CharacterGQL {
   name: String!
   description: String
   resourceURI: String
-  characters(nameStartsWith: String!, offset: Int!, limit: Int!): [CharacterGQL!]!
+  results(nameStartsWith: String!, offset: Int!, limit: Int!): [CharacterGQL!]!
 }
 
 type PaginatedListGQL {
   total: Int!
   offset: Int!
   limit: Int!
-  characters: [CharacterGQL!]!
+  results: [CharacterGQL!]!
 }
 
 type Query {
