@@ -1,12 +1,12 @@
 import { client } from './connection';
-import { gql } from 'apollo-boost';
+import { gql, ApolloQueryResult } from 'apollo-boost';
 
-import { ResponseType, ResponseResultType, RequestArgs } from './types';
+import { ResponseType, ResponseResultType, RequestArgs, Data } from './types';
 
-export async function getCharacters ({ nameStartsWith, offset, limit }: RequestArgs) {
+export async function getCharacters ({ nameStartsWith, offset, limit }: RequestArgs): Promise<ResponseResultType> {
+  const clientErrorStatuses = [400, 401, 403, 409];
+
   try {
-    const clientErrorStatuses = [400, 401, 403, 409];
-
     const res: any = await client.query({
       query: gql`
         {
@@ -23,7 +23,7 @@ export async function getCharacters ({ nameStartsWith, offset, limit }: RequestA
         }
       `
     });
-    console.log('res', res);
+    
     if (res.data) {
       return {
         status: 200,
@@ -31,7 +31,6 @@ export async function getCharacters ({ nameStartsWith, offset, limit }: RequestA
         data: res.data.getPaginatedList,
       };
     } else {
-
       return {
         status: res.errors[0].message.statusCode,
         clientErrorStatuses,
@@ -41,5 +40,10 @@ export async function getCharacters ({ nameStartsWith, offset, limit }: RequestA
     
   } catch (err) {
     console.log('[REQUEST getCharacters]', err);
+    return {
+      status: 500,
+      clientErrorStatuses,
+      data: ['Internal server error'],
+    };
   }  
 }

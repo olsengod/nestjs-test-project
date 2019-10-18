@@ -1,22 +1,20 @@
 import { CharState } from '../store/character/types'
+import { GraphQLError } from 'graphql';
 
 // API spec response
 interface GetCharactersResponse {
-  code: number | string
-  status: string
-  copyright: string
-  attributionText: string
-  attributionHTML: string
-  data: Data
-  etag: string
-  message: string
+  data: Data | undefined
+  errors: GraphQLError[] | undefined
 }
 
 export interface Data {
+  getPaginatedList: GetPaginatedList
+}
+
+export interface GetPaginatedList {
   offset: number
   limit: number
   total: number
-  count: number
   results: Result[]
 }
 
@@ -24,49 +22,17 @@ export interface Result {
   id: number
   name: string
   description: string
-  modified: string
   resourceURI: string
-  urls: Url[]
-  thumbnail: Thumbnail
-  comics: Comics
-  stories: Stories
-  events: Comics
-  series: Comics
 }
 
-interface Stories {
-  available: number
-  returned: number
-  collectionURI: string
-  items: Item2[]
+interface Error {
+  message: Message
 }
 
-interface Item2 {
-  resourceURI: string
-  name: string
-  type: string
-}
-
-interface Comics {
-  available: number
-  returned: number
-  collectionURI: string
-  items: Item[]
-}
-
-interface Item {
-  resourceURI: string
-  name: string
-}
-
-interface Thumbnail {
-  path: string
-  extension: string
-}
-
-interface Url {
-  type: string
-  url: string
+interface Message {
+  statusCode: number
+  error: string
+  message: string[]
 }
 
 //Request arguments
@@ -80,7 +46,7 @@ interface GetCharactersArgs {
 interface ResponseResult {
   status: number
   clientErrorStatuses: number[]
-  data: ResponseType | unknown[]
+  data: Data['getPaginatedList'] | GetCharactersResponse['errors'] | string[]
 }
 
 export type ResponseType = Partial<GetCharactersResponse>;

@@ -2,13 +2,13 @@ import { take, put, delay, fork, cancel, select } from 'redux-saga/effects';
 
 import { SET_CHAR_NAME, SET_CHAR_OFFSET, CharState,  } from '../character/types';
 import { getCharacters } from '../../api/requests';
-import { Data, RequestArgs } from '../../api/types';
+import { GetPaginatedList, RequestArgs } from '../../api/types';
 import { setCharList, setCharLoader } from '../character/actions';
 import { clearNotification } from '../notification/actions';
 import exponentialBackoff from '../../helpers/exponentialBackoff';
 
 function* handleGetCharactersSuccess(response: any) {
-  let characters: Data['results'] = response.data.results;
+  let characters: GetPaginatedList['results'] = response.data.results;
 
   let total: CharState['total'] = response.data.total;
   yield put(setCharList({
